@@ -1,8 +1,14 @@
 # Rockstart::SimpleTheme
-Short description and motivation.
+Generators for configuring a basic theme for Simple Rails Projects
+
+Built upon the [rockstart](https://github.com/bmorrall/rockstart) gem.
 
 ## Usage
-How to use my plugin.
+The easiest way to get started, is to run the all in one generator
+
+```bash
+$ bundle exec rails g rockstart:simple_theme
+```
 
 ## Installation
 Add this line to your application's Gemfile:

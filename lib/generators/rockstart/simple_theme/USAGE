@@ -1,0 +1,8 @@
+Description:
+    Updates Rails with a Simple Theme for rapid Prototyping
+
+Example:
+    rails generate rockstart:simple_theme
+
+    This will create:
+        Update rails default layout (rockstart:simple_theme::layout)

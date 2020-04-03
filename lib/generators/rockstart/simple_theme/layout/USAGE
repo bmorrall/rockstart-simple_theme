@@ -1,0 +1,12 @@
+Description:
+    Generates View Layout Components
+
+Example:
+    rails generate rockstart:simple_theme:layout
+    rails generate rockstart:simple_theme:layout --variant=dark
+
+    This will create:
+        app/views/layouts/application.html.erb
+        app/views/shared/head.html.erb
+        app/views/shared/navbar_<variant>.html.erb
+        app/views/shared/footer_<variant>.html.erb
