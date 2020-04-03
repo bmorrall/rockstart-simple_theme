@@ -7,7 +7,7 @@
   <body class="flex flex-col min-h-screen bg-white">
     <%%= render 'shared/navbar_<%= variant %>' %>
 
-    <main class="flex-grow w-full max-w-6xl mx-auto sm:px-6 lg:px-8">
+    <main class="flex-grow w-full">
       <%%= yield %>
     </main>
 
