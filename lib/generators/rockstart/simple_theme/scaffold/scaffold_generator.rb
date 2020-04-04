@@ -6,5 +6,6 @@ class Rockstart::SimpleTheme::ScaffoldGenerator < Rails::Generators::Base
   def install_scaffold_templates
     copy_file "index.html.erb", "lib/templates/erb/scaffold/index.html.erb"
     copy_file "show.html.erb", "lib/templates/erb/scaffold/show.html.erb"
+    copy_file "edit.html.erb", "lib/templates/erb/scaffold/edit.html.erb"
   end
 end
