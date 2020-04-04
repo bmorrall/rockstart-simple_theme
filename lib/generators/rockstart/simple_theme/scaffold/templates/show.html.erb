@@ -1,0 +1,51 @@
+<div class="bg-gray-700">
+  <div class="p-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+    <div>
+      <div>
+        <nav class="flex items-center text-sm leading-5 font-medium">
+          <svg class="sm:hidden flex-shrink-0 -ml-1 mr-1 h-5 w-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+          <%%= link_to <%= index_helper %>_path, class: 'text-gray-400 hover:text-gray-200 focus:outline-none focus:underline transition duration-150 ease-in-out' do %>
+            <%= plural_table_name.capitalize %>
+          <%% end %>
+          <svg class="hidden sm:inline-block flex-shrink-0 mx-2 h-5 w-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+          </svg>
+          <%%= link_to <%= singular_table_name %>_path(@<%= singular_table_name %>), class: "hidden sm:inline text-gray-400 hover:text-gray-200 focus:outline-none focus:underline transition duration-150 ease-in-out" do %>
+            <%%= @<%= singular_table_name %> %>
+          <%% end %>
+        </nav>
+      </div>
+      <div class="mt-2 md:flex md:items-center md:justify-between">
+        <div class="flex-1 min-w-0">
+          <h2 class="text-2xl font-bold leading-7 text-white sm:text-3xl sm:leading-9 sm:truncate">
+            <%%= @<%= singular_table_name %> %>
+          </h2>
+        </div>
+        <div class="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
+          <span class="shadow-sm rounded-md">
+            <%%= link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-gray-600 hover:bg-gray-500 focus:outline-none focus:shadow-outline-gray focus:border-gray-700 active:bg-gray-700 transition duration-150 ease-in-out" do %>
+              Edit
+            <%% end %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto">
+  <dl class="px-4 py-5 sm:p-0 bg-white shadow overflow-hidden sm:rounded-lg">
+    <%- attributes.each_with_index do |attribute, index| -%>
+      <div class="<% unless index.zero? %>mt-8 <% end %>sm:grid sm:grid-cols-3 sm:gap-4 <% unless index.zero? %>sm:border-t sm:border-gray-200 <% end %>sm:px-6 sm:py-5">
+        <dt class="text-sm leading-5 font-medium text-gray-500">
+          <%= attribute.human_name %>
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
+        </dd>
+      </div>
+    <%- end -%>
+  </dl>
+</div>

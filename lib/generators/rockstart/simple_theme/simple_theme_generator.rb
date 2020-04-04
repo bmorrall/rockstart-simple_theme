@@ -5,5 +5,6 @@ class Rockstart::SimpleThemeGenerator < Rails::Generators::Base
 
   def run_generators
     generate "rockstart:simple_theme:layout"
+    generate "rockstart:simple_theme:scaffold"
   end
 end

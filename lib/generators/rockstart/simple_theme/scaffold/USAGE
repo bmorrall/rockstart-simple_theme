@@ -1,0 +1,8 @@
+Description:
+    Installs Templates for generating Controllers with the Scaffold generator
+
+Example:
+    rails generate rockstart:simple_theme:scaffold
+
+    This will create:
+        lib/templates/erb/scaffold/show.html.erb
