@@ -1,0 +1,79 @@
+<% name_attribute = attributes.find{ |a| %w[name title].include?(a.name) } %>
+<% has_name = !!name_attribute %>
+
+<div class="bg-gray-700">
+  <div class="p-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+    <div>
+      <div>
+        <nav class="hidden sm:flex items-center text-sm leading-5 font-medium">
+          <%%= link_to <%= index_helper %>_path, class: 'text-gray-400 hover:text-gray-200 focus:outline-none focus:underline transition duration-150 ease-in-out' do %>
+            <%= plural_table_name.capitalize %>
+          <%% end %>
+        </nav>
+      </div>
+      <div class="mt-2 md:flex md:items-center md:justify-between">
+        <div class="flex-1 min-w-0">
+          <h2 class="text-2xl font-bold leading-7 text-white sm:text-3xl sm:leading-9 sm:truncate">
+            <%= plural_table_name.capitalize %>
+          </h2>
+        </div>
+        <div class="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
+          <span class="shadow-sm rounded-md">
+            <%%= link_to new_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-orange-600 hover:bg-orange-500 focus:outline-none focus:shadow-outline-gray focus:border-gray-700 active:bg-gray-700 transition duration-150 ease-in-out" do %>
+              Add New <%= human_name %>
+            <%% end %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto">
+  <div class="min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+    <table class="min-w-full">
+      <thead>
+        <tr>
+      <% if has_name %>
+          <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+            <%= name_attribute.human_name %>
+          </th>
+      <% end %>
+
+      <% attributes.without(name_attribute).each do |attribute| -%>
+          <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+            <%= attribute.human_name %>
+          </th>
+      <% end -%>
+          <% unless has_name %>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%% @<%= plural_table_name%>.each_with_index do |<%= singular_table_name %>, index| %>
+          <%%= content_tag :tr, id: dom_id(<%= singular_table_name %>), class: dom_class(<%= singular_table_name %>) + " " + (index.even? ? "bg-white" : "bg-gray-100") do %>
+            <% if has_name %>
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
+                <%%= link_to <%= singular_table_name %>.<%= name_attribute.name %>, <%= singular_table_name %>, class: 'hover:text-gray-400 focus:outline-none focus:underline transition duration-150 ease-in-out' %>
+              </td>
+            <% end %>
+
+            <% attributes.without(name_attribute).each do |attribute| -%>
+              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
+                <%%= <%= singular_table_name %>.<%= attribute.name %> %>
+              </td>
+            <% end -%>
+
+            <% unless has_name %>
+              <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                <%%= link_to 'Show', <%= singular_table_name %>, class: "text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline" %>
+              </td>
+            <% end %>
+          <%% end %>
+        <%% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
