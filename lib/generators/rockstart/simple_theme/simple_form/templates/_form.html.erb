@@ -1,0 +1,32 @@
+<%# frozen_string_literal: true %>
+<%%= simple_form_for(@<%= singular_table_name %>) do |f| %>
+  <%%= f.error_notification %>
+  <%%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+  <%- attributes.each do |attribute| -%>
+    <%- if attribute.password_digest? -%>
+    <%%= f.input :password %>
+    <%%= f.input :password_confirmation %>
+    <%- else -%>
+    <%%= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %> %>
+    <%- end -%>
+  <%- end -%>
+  </div>
+
+  <div>
+    <%% if <%= model_resource_name %>.persisted? %>
+      <div class="float-right">
+        <%%= link_to 'Destroy', <%= model_resource_name %>, method: :delete, class: "text-red-600 hover:text-red-800 py-2 px-4 rounded focus:underline transition duration-150 ease-in-out", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <%% end %>
+
+    <%%= f.button :submit, class: 'bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded transition duration-150 ease-in-out' %>
+
+    <%% if <%= model_resource_name %>.persisted? %>
+      <%%= link_to "Cancel", <%= model_resource_name %>, class: "text-blue-500 hover:text-blue-700 py-2 px-4 rounded focus:underline transition duration-150 ease-in-out" %>
+    <%% else %>
+      <%%= link_to "Cancel", <%= index_helper %>_path, class: "text-blue-500 hover:text-blue-700 py-2 px-4 rounded focus:underline transition duration-150 ease-in-out" %>
+    <%% end %>
+  </div>
+<%% end %>

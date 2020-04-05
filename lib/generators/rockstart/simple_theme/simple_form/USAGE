@@ -1,0 +1,9 @@
+Description:
+    Installs simple_form preconfigured to work with simple_theme.
+
+Example:
+    rails generate rockstart:simple_theme:simple_form
+
+    This will create:
+        Installs the simple_form gem
+        Installs a custom simple_form configuration that works with Tailwind CSS
