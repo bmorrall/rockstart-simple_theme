@@ -37,7 +37,7 @@ SimpleForm.setup do |config|
   # vertical forms
   #
   # vertical default_wrapper
-  config.wrappers :vertical_form, tag: 'div', class: 'mb-6', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
+  config.wrappers :vertical_form, tag: 'div', class: 'mb-6 max-w-lg', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -46,7 +46,7 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :label, class: 'block text-sm font-medium leading-5 text-gray-700', error_class: 'text-red-500'
-    b.wrapper :input_wrapper, tag: 'div', class: 'max-w-lg mt-1 relative rounded-md shadow-sm' do |bb|
+    b.wrapper :input_wrapper, tag: 'div', class: 'mt-1 relative rounded-md shadow-sm' do |bb|
       bb.use :input, class: 'form-input mt-1 block w-full', error_class: 'border border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red rounded', valid_class: 'is-valid'
     end
     b.use :full_error, wrap_with: { tag: 'div', class: 'mt-2 text-sm text-red-600' }
